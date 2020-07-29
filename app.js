@@ -15,7 +15,6 @@ const user = require(__dirname+"/user.js");
 const userNameDB = process.env.DB_USER;
 const password = process.env.DB_PASS;
 const cluster = process.env.DB_CLUSTER;
-const eKey = process.env.ENCKEY;
 const secretString = process.env.SECRET_STRING;
 const app = express();
 let port = process.env.PORT;
@@ -87,7 +86,6 @@ passport.use(new GoogleStrategy({
     //console.log("profile log: ");
     //console.log(profile);
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      console.log("App reached passport.use GoogleStrategy");
       return cb(err, user);
     });
   }
